@@ -41,30 +41,40 @@
         .container-fluid {
             flex: 1;
             display: flex;
-            overflow: hidden;
+            overflow: hidden; /* Prevent overflowing of content */
         }
         .left-section, .right-section {
-            max-height: 100vh; /* Set the maximum height to the viewport height */
+            max-height: calc(100vh - 80px); /* Adjust based on header/footer height */
             overflow-y: auto; /* Enable vertical scrolling */
             padding: 20px;
             background-color: #f8f9fa;
+            flex: 0 1 auto; /* Prevent shrinking */
         }
         .left-section {
-            width: 300px; /* Fixed width for left section */
             border-right: 1px solid #ddd; /* Visual separation */
+            min-width: 200px; /* Minimum width */
         }
         .right-section {
-            width: 300px; /* Fixed width for right section */
             border-left: 1px solid #ddd; /* Visual separation */
+            min-width: 200px; /* Minimum width */
         }
         .middle-section {
             flex: 1; /* Expands to fill remaining space */
             padding: 20px;
             background-color: #f8f9fa;
-            max-height: calc(100vh - 80px); /* Adjust based on header/footer height */
-            overflow-y: auto; /* Enable vertical scrolling */
             display: flex;
             flex-direction: column;
+            overflow: hidden; /* Ensure middle section does not overflow */
+        }
+        .food-container-wrapper {
+            flex: 1; /* Fill the remaining space */
+            overflow-y: auto; /* Enable vertical scrolling */
+            max-height: calc(100vh - 120px); /* Adjust based on header/footer height */
+        }
+        .food-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
         }
         .left-section h2, .middle-section h2 {
             margin-bottom: 20px;
@@ -83,11 +93,6 @@
             height: 80px; /* Fixed height */
             object-fit: cover;
             border-radius: 10px;
-        }
-        .food-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
         }
         .food-item {
             flex: 1 1 calc(50% - 20px); /* Two columns with space between */
@@ -199,8 +204,10 @@
         <div>
             <h2 id="category-header">Select a Category</h2>
         </div>
-        <div id="category-content" class="food-container">
-            <!-- Foods will be dynamically added here -->
+        <div class="food-container-wrapper">
+            <div id="category-content" class="food-container">
+                <!-- Foods will be dynamically added here -->
+            </div>
         </div>
     </div>
     <div class="right-section">
